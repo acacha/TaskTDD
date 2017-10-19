@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/{user}/tasks', 'UserTasksController@index');
+
+//Route::resource
+
+
+
+
+

@@ -29,13 +29,16 @@ class ViewUsersTasks extends TestCase
 
         //2) Executar codi a prova
 
-        $response = $this->get('user/'. $user->id . '/tasks');
+        $this->withoutExceptionHandling();
 
+        $response = $this->get('user/'. $user->id . '/tasks');
+//        $response->dump();
         $response->assertSuccessful();
         $response->assertViewIs('user_tasks');
         $response->assertViewHas('tasks', $user->tasks);
+//        $response->assertViewHas('user', $user);
 
-        $response->assertSeeText($user->name . ' Tasks: ');
+        $response->assertSeeText($user->name . ' Tasks:');
 
         foreach ($tasks as $task) {
             $response->assertSeeText($task->name);
